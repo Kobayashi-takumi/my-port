@@ -11,6 +11,7 @@
     </section>
   </div>
 </template>
+
 <script>
 export default {
   name: 'id',
@@ -23,15 +24,8 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
-el-row{ 
-  padding: 10px;
-}
 
-.my-project {
-  text-align: center;
-}
 </style>
