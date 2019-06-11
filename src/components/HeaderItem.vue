@@ -1,33 +1,27 @@
 <template>
     <header id="header">
         <h1>My Portfolio</h1>
-        <el-button type="info" round @click="toggle_switch()" icon="el-icon-menu"></el-button>
-        <nav id="header-nav" v-show="isActive">
-                <router-link id="home-nav" to="/">home</router-link>
-                <router-link id="about-nav" to="/about">about</router-link>
-        </nav>
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu-item index="1"><router-link to="/home">Home</router-link></el-menu-item>
+        <el-submenu index="2">
+            <template slot="title">About me</template>
+            <el-menu-item index="2-1"><router-link to="/about" tag="p">portfolio</router-link></el-menu-item>
+            <el-menu-item index="2-2">Github</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="3">Job request</el-menu-item>
+        <el-menu-item index="4">Recruitment</el-menu-item>
+        </el-menu>
     </header>
 </template>
 
 <script>
 export default {
   name: 'header',
-  data() {
-    return {
-      isActive: false,
-    }
-  },
-  methods: {
-    toggle_switch() {
-      this.isActive = !this.isActive;
-    }
-  }
 }
 </script>
 
 <style scoped>
-.header {
-    display: grid;
-    background-color: aqua;
+header {
+    text-align: center;
 }
 </style>

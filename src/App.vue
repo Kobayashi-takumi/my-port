@@ -1,32 +1,29 @@
 <template>
   <div id="app">
     <header-item/>
-    <div class="contents"><router-view/></div>
-  </div>
+    <router-view/>
+</div>
 </template>
 
 <script>
 import HeaderItem from './components/HeaderItem.vue'
-
 export default {
-  name: 'app',
-  data() {
-    return {
-      isActive: false,
+    name: 'app',
+    components: {
+      HeaderItem
     }
-  },
-  components: {
-    HeaderItem
-  },
-  methods: {
-    toggle_switch() {
-      this.isActive = !this.isActive;
-    }
-  }
-}
+  };
 </script>
 
 
 <style scoped>  
-
+.el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    color: #333;
+  }
 </style>
