@@ -3,25 +3,24 @@
     <div class="row">
     <el-card class="box-card" v-for="project in projects" :key="project.title" body-style="width: 100%;">
 
-      <div v-if="project.disable == false">
-        <h4 class="title">{{ project.title }}</h4>
-        <div class="graph">
-          <div class="graph-title"><i class="el-icon-medal" v-show="project.meter > 70"></i>得意度</div>
-          <div style="dispaly: inline; text-align: center;">
-            <el-progress type="circle" :percentage="project.meter" class="graph-body"></el-progress>
+      <el-carousel>
+        <el-carousel-item>
+          <h4 class="title">{{ project.title }}</h4>
+          <div class="graph">
+            <div class="graph-title"><i class="el-icon-medal" v-show="project.meter > 70"></i>得意度</div>
+            <div style="dispaly: inline; text-align: center;">
+              <el-progress type="circle" :percentage="project.meter" class="graph-body"></el-progress>
+            </div>
           </div>
-        </div>
-      </div>
-      <div v-else-if="project.disable" class="back">
-        <div>{{ project.contents }}</div>
-      </div>
+        </el-carousel-item>
 
-        <div class="detail">
-          <el-button type="info" round @click="changeSwitch(project.id)"><i class="el-icon-more"></i></el-button>
-        </div>
+        <el-carousel-item>
+          <p class='back'>{{ project.contents }}</p>
+        </el-carousel-item>
+      </el-carousel>
+        
     </el-card>
     </div>
-
   </div>
 </template>
 
@@ -48,9 +47,11 @@ export default {
 </script>
 
 <style scoped>
+
 .title {
   padding: 10px;
   text-align: center;
+  color: white;
 }
 
 .row {
@@ -60,15 +61,15 @@ export default {
     align-items: center;
   }
 
-  .box-card {
+.box-card {
   padding: 5px;
   border: 3px solid #eee;
   border-radius: 10px;
   margin: 10px;
   width: calc(30% - 10px);
-  height: 300px;
+  height: 330px;
   display: flex;
-  position: relative;
+  background-color: dimgrey;
   }
 
 .graph{
@@ -78,24 +79,26 @@ export default {
 
 .graph-title{
   text-align: center;
+  color: white;
 }
 .graph-body {
   margin: auto;
 }
 
-.detail {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
 
-.back {
-  display: inline;
+.back{
   text-align: center;
-  height: 50%;
+  color: white;
 }
   @media (max-width: 500px) {
-    .card{
+    .box-card{
       width: 100%;
       margin: 10px;
     }
