@@ -1,8 +1,8 @@
 <template>
     <div id="career">
         <div class="contents">
-        <ul>
-            <li v-for="content in items" :key="content.item">{{ content.item }}</li>
+        <ul style="text-align: center; list-style: none;">
+            <li v-for="content in items" :key="content.item" style="padding: 30px;">{{ content.item }}</li>
         </ul>
         </div>
     </div>
@@ -22,5 +22,7 @@ export default {
 }
 </script>
 <style>
-
+.content{
+    width: 100%
+}
 </style>
