@@ -38,11 +38,6 @@ export default {
       ]
     }
   },
-  methods: {
-    changeSwitch(id) {
-      this.projects[id - 1].disable =! this.projects[id - 1].disable;
-    }
-  },
 }
 </script>
 
