@@ -6,8 +6,9 @@
             <el-menu-item index="1"><router-link to="/" type="text">Home</router-link></el-menu-item>
             <el-submenu index="2">
                 <template slot="title">About me</template>
-                <el-menu-item index="2-1"><router-link to="/about" tag="p">portfolio</router-link></el-menu-item>
-                <el-menu-item index="2-2"><router-link to="/github" tag="p">Github</router-link></el-menu-item>
+                <el-menu-item index="2-1"><router-link to="/career" tag="p">Career</router-link></el-menu-item>
+                <el-menu-item index="2-2"><router-link to="/about" tag="p">portfolio</router-link></el-menu-item>
+                <el-menu-item index="2-3"><router-link to="/github" tag="p">Github</router-link></el-menu-item>
             </el-submenu>
             <el-menu-item index="3"><router-link to="/jobrequest">Job request</router-link></el-menu-item>
             <el-menu-item index="4"><router-link to="/recruitment">Recruitment</router-link></el-menu-item>

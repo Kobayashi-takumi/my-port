@@ -5,6 +5,7 @@ import About from './views/About.vue'
 import Github from './views/Github.vue'
 import JobRequest from './views/JobRequest.vue'
 import Recruitment from './views/Recruitment.vue'
+import Career from './views/Career.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/recruitment',
       name: 'recruitment',
       component: Recruitment
+    },
+    {
+      path: '/career',
+      name: 'career',
+      component: Career,
     }
   ]
 })
