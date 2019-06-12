@@ -17,5 +17,7 @@ export default {
 
 
 <style scoped>  
-
+.app {
+  background-color: aqua;
+}
 </style>

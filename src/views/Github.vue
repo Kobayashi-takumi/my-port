@@ -2,7 +2,7 @@
     <div id="github">
         <div class="row">
         <div class="card">
-            <div class="title"><span style="border-bottom: 3px solid #eee;">My Github</span></div>
+            <h2 class="title"><span style="border-bottom: 3px solid #eee;">My Github</span></h2>
             <img src="../assets/github.png" class="image">
             <div class="content" style="float: right;"><a href="https://github.com/Kobayashi-takumi"><el-button type="text"><i class="el-icon-thumb"></i>Click Me!</el-button></a></div>
         </div>
@@ -30,13 +30,15 @@ export default {
   border: 3px solid #eee;
   border-radius: 10px;
   margin: auto;
-  width: 40%;
+  width: 30%;
   height: 50%;
   }
 
   .image {
-    width: 100%;
+    width: 50%;
+    height: 50%;
     display: block;
+    margin: auto;
   }
 
   @media (max-width: 600px) {

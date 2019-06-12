@@ -3,7 +3,7 @@
     <div class="home-content">
       <transition> 
       <h1 class="home-text"><span
-      v-for="(t, index) in text[0]"
+      v-for="(t, index) in text"
       :key="index"
       class="item"
       :style="{animationDelay: index*100+'ms'}"
@@ -20,9 +20,9 @@ export default {
   name: 'home',
   data() {
     return {
-      text: ['Welcome to my portfolio', 'Thank you']
+      text: "Welcome to Takumi's portfolio"
     }
-  }
+  },
 }
 </script>
 <style>
