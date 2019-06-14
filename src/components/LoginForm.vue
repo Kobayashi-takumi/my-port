@@ -5,7 +5,7 @@
                 <p>Login</p>
                 <el-input placeholder="Please e-mail" v-model="email" clearable />
                 <el-input placeholder="Please input password" v-model="password" show-password></el-input>
-                <el-button type="primary" round @click="emailLogin">Submit</el-button>
+                <el-button type="primary" round @click="doLogin">Submit</el-button>
                 <el-button type="danger" round @click="cancelEvent">Cancel</el-button>
                 <div v-if="showError">{{ errorMessage }}</div>
             </div>
@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import router from '../router'
+import Firebase from '../firebase.js'
 
 export default {
     name: 'login-form',
@@ -33,28 +32,12 @@ export default {
         cancelEvent() {
             this.$emit('login-show');
         },
-        emailLogin() {
-            firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(result => {
-                console.log(result);
-                router.push('/about')
-            }).catch(error => {
-                this.errorMessage = error.message
-                this.showError = true
-            })
+        doLogin() {
+            Firebase.login();
         },
-        googleLogin() {
-            const provider = new firebase.auth.GoogleAuthProvider()
-
-            firebase.auth().signInWithPopup(provider).then(result => {
-                console.log(result);
-                router.push('/');
-            }).catch(error => {
-                this.errorMessage = error.message;
-                this.showError = true;
-            })
-        }
     }
 }
+
 
 </script>
 <style scoped>

@@ -2,27 +2,7 @@
     <header id="header">
         <el-row>
             <el-col :span="24">
-                <transition class="login-btn">
-                    <el-dropdown style="float: right;" v-show="show == false">
-                        <div class="login-menu">
-                        <i class="el-icon-user-solid"></i>
-                        </div>
-                        <el-dropdown-menu slot="dropdown">
-                            <div @click="isActive">
-                            <el-dropdown-item >Sign in</el-dropdown-item>
-                            </div>
-                            <el-dropdown-item>Sign up</el-dropdown-item>
-                            <el-dropdown-item>Log out</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                
-                </transition>
-                
-            </el-col>
-            <el-col :span="24">
-                <transition class="login-form" mode="out-in">
-                    <login-form style="float: right;" v-show="show" @login-show="isActive"/>
-                </transition>
+                <google-log-in style="float: right;" />
             </el-col>
             <el-col :span="24">
                 <h1>Takumi's Portfolio</h1>
@@ -47,7 +27,7 @@
 </template>
 
 <script>
-import LoginForm from './LoginForm.vue'
+import GoogleLogIn from './GoogleLogIn.vue'
 
 export default {
   name: 'header',
@@ -57,7 +37,7 @@ export default {
       }
   },
   components: {
-      LoginForm
+      GoogleLogIn
   },
   methods: {
       isActive() {
@@ -82,25 +62,4 @@ header {
     margin: auto;
 }
 
-.login-menu {
-    border: 1px solid black;
-    border-radius: 30px;
-    width: 50px;
-}
-
-.login-form-enter {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-}
-
-.login-form-enter-to {
-    opacity: 1;
-}
-.login-form-leave {
-    opacity: 1;
-}
-.login-form-leave-to {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-}
 </style>
