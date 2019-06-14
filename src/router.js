@@ -48,7 +48,7 @@ Vue.use(Router)
 })
 
 router.beforeResolve((to, from, next) => {
-  if (to.path != '/jobrequest') {
+  if (to.path != '/recruitment') {
     next()
   } else {
     firebase.auth().onAuthStateChanged(user => {
