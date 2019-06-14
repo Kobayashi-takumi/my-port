@@ -12,17 +12,19 @@
       </h1>
       </transition>
     </div>
+    <not-signin-message />
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'home',
   data() {
     return {
       text: "Welcome to Takumi's portfolio"
     }
-  },
+  }
 }
 </script>
 <style>
