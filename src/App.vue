@@ -2,15 +2,17 @@
   <div id="app">
     <header-item/>
     <router-view/>
+
 </div>
 </template>
 
 <script>
 import HeaderItem from './components/HeaderItem.vue'
+
 export default {
     name: 'app',
     components: {
-      HeaderItem
+      HeaderItem,
     }
   };
 </script>

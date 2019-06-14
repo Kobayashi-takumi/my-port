@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase/app'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Github from './views/Github.vue'
@@ -9,7 +10,7 @@ import Career from './views/Career.vue'
 
 Vue.use(Router)
 
-export default new Router({
+ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -45,3 +46,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeResolve((to, from, next) => {
+  if (to.path != '/recruitment') {
+    next()
+  } else {
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        next()
+      } else {
+        next({path: '/'})
+      }
+    })
+  }
+})
+
+export default router
