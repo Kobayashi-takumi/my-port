@@ -5,11 +5,12 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Animate from 'animate.css'
-import Firebase from './firebase.js';
+import './firebase/firebase.js'
+import './firebase/firestore.js'
 
 Vue.use(ElementUI)
 Vue.use(Animate)
-Firebase.init();
+
 
 Vue.config.productionTip = false
 

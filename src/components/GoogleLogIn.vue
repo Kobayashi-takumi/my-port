@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Firebase from '../firebase.js'
+import Firebase from '../firebase/firebase.js'
 
 export default {
     name: 'google-login',

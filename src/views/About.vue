@@ -4,11 +4,11 @@
     <el-row>
       <el-col :span="24">
         <el-carousel :interval="4000" type="card" height="250px">
-          <div v-for="(item, index) in items" :key="item" class="lists">
+          <div v-for="(item, index) in items" :key="item.id" class="lists">
             <div  @mouseover="isActive(index)">
             <el-carousel-item style="border-radius: 10px; display: flex;">
               <div class="carousel-item-contents" style="margin: auto;">
-                <h2 class="medium">{{ item.title }}</h2>
+                <h2 class="medium">{{ item.data.language }}</h2>
               </div>
             </el-carousel-item>
             </div>
@@ -29,7 +29,7 @@
           <div class="graph">
             <div class="graph-title"><i class="el-icon-medal" v-show="cardContents.meter > 70"></i>得意度</div>
             <div style="dispaly: inline; text-align: center;">
-              <el-progress type="circle" :percentage="cardContents.meter" class="graph-body"></el-progress>
+              <el-progress type="circle" :percentage="cardContents.metar" class="graph-body"></el-progress>
             </div>
           </div>
 
@@ -37,30 +37,42 @@
         </transition>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
 <script>
+import db from '../firebase/firestore.js'
+
 export default {
   name: 'id',
   data() {
     return {
-      items: [
-        {title: 'python', year: 'python歴1年', flamework: 'Django',meter: 80},
-        {title: 'Javascript', year: 'Javascript歴　３ヶ月', flamework: 'Vue.js', meter: 60},
-      ],
+      items: [],
       show: false,
-      cardContents: null
+      cardContents: null,
     }
+  },
+  created() {
+    db.collection('languages').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let data = {
+          'id': doc.id,
+          'data': doc.data()
+        }
+        this.items.push(data)
+      })
+    })
   },
   methods: {
     isActive(index) {
-      this.cardContents = this.items[index];
+      this.cardContents = this.items[index].data;
       this.show = true;
     },
     isDeactive() {
       this.show = false;
+    },
+    logs() {
+      console.log(this.lists)
     }
   }
 }
