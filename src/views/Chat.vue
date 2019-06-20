@@ -4,10 +4,10 @@
             <div class="body">
                 <h1 style="text-align: center;">Job Chat</h1>
                 <h3 style="text-align: center;">{{ user.displayName }}'s Chat Room</h3>
-                <message-boby :messages="messages" />
+                <message-boby @message-delete="messageDelete" :sorted_messages="sorted_messages" />
             </div>
             <div class="form">
-                <message-form style="width: 60%; margin: auto;"/>
+                <message-form @send-message="sendMessage" style="width: 60%; margin: auto;"/>
             </div>
         </div>
         <div v-else class="error-message">
@@ -29,12 +29,7 @@ export default {
         }
     },
     created() {
-        const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room')
-        room.onSnapshot(querySnapshot => {
-        let data = []
-        querySnapshot.forEach( doc => data.push(doc.data()))
-        this.messages = data
-      })
+        this.getChat();
     },
     computed: {
         user() {
@@ -42,7 +37,27 @@ export default {
         },
         isSignIn() {
             return this.$store.getters.isSignIn;
+        },
+        sorted_messages () {
+            const list = this.messages.slice()
+            list.sort((a, b) => {
+                a = a['created_at']
+                b = b['created_at']
+                if( a < b ) return -1;
+                if( a > b ) return 1;
+                return 0; 
+            });
+            return list
+        },
+        id() {
+            return this.$store.getters.id
         }
+    },
+    watch: {
+      user() {
+          this.getChat()
+        },
+        deep: true
     },
     components: {
         MessageBoby,
@@ -50,9 +65,45 @@ export default {
         NotSigninMessage
     },
     methods: {
-        logs() {
-            console.log(this.messages[0])
-            console.log(this.$store.getters.user.uid)
+        getChat() {
+            const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room').orderBy("created_at", "asc")
+            room.onSnapshot(querySnapshot => {
+                querySnapshot.forEach( doc => {
+                    let from = ''
+                    if (doc.data().from === this.$store.getters.user.displayName ){
+                        from = true
+                    }
+                    let data = {
+                        'id': doc.id,
+                        'title': doc.data().title,
+                        'message': doc.data().message,
+                        'created_at': doc.data().created_at,
+                        'from': from,
+                    }
+                    this.messages.push(data)
+                })
+                
+            })
+        },
+        sendMessage() {
+            const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room')
+            room.add({
+                'title': this.$store.getters.title,
+                'message': this.$store.getters.message,
+                'created_at': Date.now(),
+                'from': this.user.displayName,
+            })
+            this.scrollBottom();
+        },
+        scrollBottom() {
+            this.$nextTick(() => {
+                window.scrollTo(0, document.body.clientHeight)
+            })
+        },
+        messageDelete() {
+            console.log('hello')
+            const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room').doc(this.id)
+            room.delete()
         }
     }
 }

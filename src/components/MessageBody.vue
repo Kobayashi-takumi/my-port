@@ -1,7 +1,7 @@
 <template>
     <div id="message-body">
         <el-row>
-            <el-col :span="24" v-for="message in messages" :key="message">
+            <el-col :span="24" v-for="message in sorted_messages" :key="message">
                 <div >
                 <el-card class="box-card" shadow="hover" :class="{ mymessage: message.from}">
                     <div slot="header" class="clearfix">
@@ -9,7 +9,7 @@
                     </div>
                     <div>
                         {{ message.message }}
-                        <el-button style="float: right;" type="info" icon="el-icon-delete-solid" circle></el-button>
+                        <el-button @click="del(message.id)" style="float: right;" type="info" icon="el-icon-delete-solid" circle></el-button>
                     </div>
                 </el-card>
                 </div>
@@ -22,7 +22,13 @@
 
 export default {
     name: 'message-body',
-    props: ['messages']
+    props: ['sorted_messages'],
+    methods: {
+        del(id) {
+            this.$store.commit('setId', id);
+            this.$emit('message-delete');
+        }
+    }
 }
 </script>
 

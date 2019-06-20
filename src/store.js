@@ -9,10 +9,9 @@ export default new Vuex.Store({
     user: {},
     isSignIn: false,
     //chat
-    roomId: '',
     title: '',
     message: '',
-    createdAt: '',
+    id: '',
   },
   mutations: {
     setUser(state, user) {
@@ -21,7 +20,15 @@ export default new Vuex.Store({
     setSignIn(state, isSignIn) {
       state.isSignIn = isSignIn;
     },
-    
+    setTitle(state, title){
+      state.title = title
+    },
+    setMessage(state, message){
+      state.message = message
+    },
+    setId(state, id){
+      state.id = id
+    }
   },
   getters: {
     user(state) {
@@ -29,6 +36,15 @@ export default new Vuex.Store({
     },
     isSignIn(state){
       return state.isSignIn
+    },
+    title(state){
+      return state.title
+    },
+    message(state){
+      return state.message
+    },
+    id(state){
+      return state.id
     }
   },
   actions: {

@@ -28,15 +28,19 @@
 export default {
     name: 'message-form',
     data() {
-    return {
-      title: '',
-      message: ''
-    }
-  },
-  methods: {
+        return {
+            title: '',
+            message: '',
+        }
+    },
+    methods: {
       send() {
-              this.title = ''
-              this.message = ''
+          if (this.message == '') return alert('messageに入力がありません！')
+          this.$store.commit('setTitle', this.title);
+          this.$store.commit('setMessage', this.message);
+          this.$emit('send-message');
+          this.title = '';
+          this.message = '';
         }
     }
 }

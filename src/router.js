@@ -5,7 +5,6 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Github from './views/Github.vue'
 import Chat from './views/Chat.vue'
-import Recruitment from './views/Recruitment.vue'
 import Career from './views/Career.vue'
 
 Vue.use(Router)
@@ -33,11 +32,6 @@ Vue.use(Router)
       path: '/chat',
       name: 'chat',
       component: Chat
-    },
-    {
-      path: '/recruitment',
-      name: 'recruitment',
-      component: Recruitment
     },
     {
       path: '/career',
