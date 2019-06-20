@@ -8,7 +8,7 @@
                         <span>{{ message.title }}</span>
                     </div>
                     <div>
-                        {{ message.contents }}
+                        {{ message.message }}
                         <el-button style="float: right;" type="info" icon="el-icon-delete-solid" circle></el-button>
                     </div>
                 </el-card>
@@ -22,17 +22,7 @@
 
 export default {
     name: 'message-body',
-    data() {
-        return {
-            messages: [
-                {title: 'Hello', contents: 'Hello Tom', from: true},
-                {title: 'Fine', contents: "I'm fine Thank you", from: false},
-                {title: 'Fine', contents: "I'm fine Thank you", from: false},
-                {title: 'Fine', contents: "I'm fine Thank you", from: false},
-                {title: 'Fine', contents: "I'm fine Thank you", from: false},
-            ]
-        }
-    },
+    props: ['messages']
 }
 </script>
 

@@ -5,8 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //login
     user: {},
     isSignIn: false,
+    //chat
+    roomId: '',
+    title: '',
+    message: '',
+    createdAt: '',
   },
   mutations: {
     setUser(state, user) {
@@ -14,7 +20,8 @@ export default new Vuex.Store({
     },
     setSignIn(state, isSignIn) {
       state.isSignIn = isSignIn;
-    }
+    },
+    
   },
   getters: {
     user(state) {

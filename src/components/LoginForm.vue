@@ -1,15 +1,4 @@
 <template>
-<<<<<<< HEAD
-    
-</template>
-<script>
-export default {
-    
-}
-</script>
-<style scoped>
-
-=======
     <div id="login-form">
         <el-card class="box-card">
             <div class="form-contents">
@@ -25,7 +14,7 @@ export default {
 </template>
 
 <script>
-import Firebase from '../firebase.js'
+import Firebase from '../firebase/firebase.js'
 
 export default {
     name: 'login-form',
@@ -70,5 +59,4 @@ export default {
     padding: 5px;
     padding-top: 10px;
 }
->>>>>>> login-form
 </style>

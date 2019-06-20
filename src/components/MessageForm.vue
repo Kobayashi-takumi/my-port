@@ -44,10 +44,10 @@ export default {
 
 <style scoped>
 .el-row {
-    border: 3px solid #eee;
+    border: 3px solid #475669;
     border-radius: 10px;
     padding: 10px;
-    background-color: #eee;
+    background-color: white;
 }
 
 .el-col {

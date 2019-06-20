@@ -1,10 +1,10 @@
 <template>
-    <div id="signin-message">
+    <div id="not-signin-message">
         <el-row>
             <el-col :span="24">
-                <transition>
-                <h1>このコンテンツはSign Inしないと使えないよ</h1>
-                </transition>
+                
+                <h2  class="bounceIn">このコンテンツはSign Inしないと使えないよ</h2>
+                
             </el-col>
         </el-row>
     </div>
@@ -12,10 +12,52 @@
 
 <script>
 export default {
-    name: 'signin-message',
+    name: 'not-signin-message',
 }
 </script>
 
 <style scoped>
 
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.bounceIn {
+  animation-duration: 0.75s;
+  animation-name: bounceIn;
+}
 </style>

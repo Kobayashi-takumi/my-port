@@ -17,8 +17,16 @@
                     <el-menu-item index="2-2"><router-link to="/about" tag="p">Languages</router-link></el-menu-item>
                     <el-menu-item index="2-3"><router-link to="/github" tag="p">Github</router-link></el-menu-item>
                 </el-submenu>
-                <el-menu-item index="3"><router-link to="/jobrequest">Job request</router-link></el-menu-item>
-                <el-menu-item index="4"><router-link to="/recruitment">Recruitment</router-link></el-menu-item>
+                <el-menu-item index="3">
+                    <el-popover
+                    placement="bottom"
+                    title="Job chatとは？"
+                    width="200"
+                    trigger="hover"
+                    content="仕事の依頼・スカウトなど仕事関係に関することをチャットする場所です！">
+                        <el-button slot="reference" type="text"><router-link to="/chat">Job chat</router-link></el-button>
+                    </el-popover>
+                    </el-menu-item>
                 </el-menu>
                 </div>
             </el-col>
@@ -33,7 +41,8 @@ export default {
   name: 'header',
   data() {
       return {
-          show: false
+          show: false,
+          visible: false
       }
   },
   components: {
