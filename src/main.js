@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Animate from 'animate.css'
 import './firebase/firebase.js'
 import './firebase/firestore.js'
+import './assets/sass/style.scss'
 
 Vue.use(ElementUI)
 Vue.use(Animate)

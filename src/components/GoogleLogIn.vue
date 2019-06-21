@@ -17,7 +17,7 @@
                 </el-dropdown>
             </el-col>
             <el-col>
-                <div v-show="isSignIn">
+                <div v-show="isSignIn" style="font-style: oblique;">
                     <p>Login User</p>
                     <p>{{ user.displayName }}</p>
                 </div>

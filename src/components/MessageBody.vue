@@ -37,6 +37,8 @@ export default {
      width: 30%;
      padding: 20px;
      margin: 30px;
+     background-color: rgb(34, 33, 33);
+     color: white;
      border-radius: 10px;
      float: left;
      position: relative;

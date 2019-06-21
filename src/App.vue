@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" style="font-family: Montserrat">
     <header-item/>
-    <router-view/>
+    <router-view style="padding: 20px;"/>
 
 </div>
 </template>
@@ -19,7 +19,5 @@ export default {
 
 
 <style scoped>  
-.app {
-  background-color: aqua;
-}
+
 </style>

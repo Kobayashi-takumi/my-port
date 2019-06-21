@@ -3,7 +3,7 @@
     
     <el-row>
       <el-col :span="24">
-        <el-carousel :interval="4000" type="card" height="250px">
+        <el-carousel :interval="4000" type="card" height="250px" style="width: 60%; margin: auto;">
           <div v-for="(item, index) in items" :key="item.id" class="lists">
             <div  @mouseover="isActive(index)">
             <el-carousel-item style="border-radius: 10px; display: flex;">
@@ -27,7 +27,7 @@
           <p>Frame Work : {{ cardContents.flamework }}</p>
 
           <div class="graph">
-            <div class="graph-title"><i class="el-icon-medal" v-show="cardContents.meter > 70"></i>得意度</div>
+            <div class="graph-title"><i class="el-icon-medal" v-show="cardContents.metar > 70"></i>得意度</div>
             <div style="dispaly: inline; text-align: center;">
               <el-progress type="circle" :percentage="cardContents.metar" class="graph-body"></el-progress>
             </div>
@@ -97,7 +97,8 @@ export default {
   }
 
   .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+    background-color: rgb(34, 33, 33);
+    color: white;
   }
 
  .text {
@@ -111,6 +112,7 @@ export default {
   .box-card {
     width: 30%;
     height: 400px;
+    border: 3px solid black;
     border-radius: 10px;
     margin: auto;
   }
