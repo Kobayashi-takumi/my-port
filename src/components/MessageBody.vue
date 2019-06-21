@@ -1,7 +1,7 @@
 <template>
     <div id="message-body">
         <el-row>
-            <el-col :span="24" v-for="message in sorted_messages" :key="message">
+            <el-col :span="24" v-for="message in messages" :key="message">
                 <div >
                 <el-card class="box-card" shadow="hover" :class="{ mymessage: message.from}">
                     <div slot="header" class="clearfix">
@@ -22,7 +22,7 @@
 
 export default {
     name: 'message-body',
-    props: ['sorted_messages'],
+    props: ['messages'],
     methods: {
         del(id) {
             this.$store.commit('setId', id);

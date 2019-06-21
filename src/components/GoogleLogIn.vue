@@ -56,10 +56,11 @@ export default {
 <style>
 
 .login-menu {
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 30px;
     width: 50px;
     padding: 3px;
     margin: 10px;
+    background-color: white;
 }
 </style>

@@ -4,7 +4,7 @@
             <div class="body">
                 <h1 style="text-align: center;">Job Chat</h1>
                 <h3 style="text-align: center;">{{ user.displayName }}'s Chat Room</h3>
-                <message-boby @message-delete="messageDelete" :sorted_messages="sorted_messages" />
+                <message-boby @message-delete="messageDelete" :messages="messages" />
             </div>
             <div class="form">
                 <message-form @send-message="sendMessage" style="width: 60%; margin: auto;"/>
@@ -38,24 +38,13 @@ export default {
         isSignIn() {
             return this.$store.getters.isSignIn;
         },
-        sorted_messages () {
-            const list = this.messages.slice()
-            list.sort((a, b) => {
-                a = a['created_at']
-                b = b['created_at']
-                if( a < b ) return -1;
-                if( a > b ) return 1;
-                return 0; 
-            });
-            return list
-        },
         id() {
             return this.$store.getters.id
-        }
+        },
     },
     watch: {
-      user() {
-          this.getChat()
+        user() {
+            this.getChat()
         },
         deep: true
     },
@@ -66,6 +55,7 @@ export default {
     },
     methods: {
         getChat() {
+            let list = []
             const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room').orderBy("created_at", "asc")
             room.onSnapshot(querySnapshot => {
                 querySnapshot.forEach( doc => {
@@ -80,10 +70,17 @@ export default {
                         'created_at': doc.data().created_at,
                         'from': from,
                     }
-                    this.messages.push(data)
+                    list.push(data)
                 })
-                
             })
+            list.sort((a, b) => {
+                a = a['created_at']
+                b = b['created_at']
+                if( a < b ) return -1;
+                if( a > b ) return 1;
+                return 0; 
+            });
+            this.messages = list
         },
         sendMessage() {
             const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room')
@@ -93,6 +90,7 @@ export default {
                 'created_at': Date.now(),
                 'from': this.user.displayName,
             })
+            this.getChat();
             this.scrollBottom();
         },
         scrollBottom() {
@@ -103,8 +101,9 @@ export default {
         messageDelete() {
             console.log('hello')
             const room =db.collection('chat-rooms').doc(this.$store.getters.user.uid).collection('room').doc(this.id)
-            room.delete()
-        }
+            room.delete();
+            this.getChat();
+        },
     }
 }
 </script>
